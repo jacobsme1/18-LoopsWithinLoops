@@ -3,8 +3,8 @@ This project demonstrates NESTED LOOPS (i.e., loops within loops)
 in the context of TWO-DIMENSIONAL GRAPHICS.
 
 Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Max Jacobs.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -80,9 +80,36 @@ def draw_L(window, circle, r, c):
     and m and n are small, positive integers.
     """
     # ------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #     The testing code is already written for you (above).
     # ------------------------------------------------------------------
+    for j in range(r):
+        circle2 = rg.Circle(circle.center, circle.radius)
+        circle2.attach_to(window)
+        window.render(.1)
+        for k in range(3):
+            circle1 = rg.Circle(circle.center, circle.radius)
+            circle1.fill_color = circle.fill_color
+            circle1.move_by(circle.radius * 2 * k, circle2.radius * 2 * j)
+            circle1.attach_to(window)
+            window.render(.1)
+    for j in range(3):
+        circle2 = rg.Circle(circle.center, circle.radius)
+        circle2.attach_to(window)
+        window.render(.1)
+        for k in range(c+3):
+            circle1 = rg.Circle(circle.center, circle.radius)
+            circle1.fill_color = circle.fill_color
+            circle1.move_by(circle.radius * 2 * k, circle2.radius * 2 * j + r * circle.radius * 2)
+            circle1.attach_to(window)
+            window.render(.1)
+    #for j in range(3):
+     #   circle.move_by(0, circle.radius * 2 * j)
+      #  for k in range(c):
+       #     circle.move_by(circle.radius * 2 * k, 0)
+        #    circle.attach_to(window)
+
+
 
 
 def run_test_draw_wall_on_right():
@@ -121,9 +148,17 @@ def draw_wall_on_right(rectangle, n, window):
     and n is a small, positive integer.
     """
     # ------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #     The testing code is already written for you (above).
     # ------------------------------------------------------------------
+    for k in range(n):
+        for j in range(k+1):
+            rectangle1 = rg.Rectangle(rectangle.get_upper_left_corner(), rectangle.get_lower_right_corner())
+            rectangle1.fill_color = rectangle.fill_color
+            rectangle1.attach_to(window)
+            rectangle1.move_by(-rectangle.get_width() * (j+1), rectangle.get_height() * k)
+            window.render(.1)
+
 
 
 # ----------------------------------------------------------------------
